@@ -16,9 +16,10 @@ npr.seed(seed)
 
 bkgd_color = 'black'
 
-# quality = 'draft'
+quality = 'draft'
 # quality = 'medium'
-quality = 'final'
+# quality = 'final'
+
 if quality == 'draft':
     n = 100
     cmap_strs = ['Rocket']
