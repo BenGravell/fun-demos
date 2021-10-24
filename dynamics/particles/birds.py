@@ -284,8 +284,8 @@ if __name__ == "__main__":
     # npr.seed(1)
 
     # Number of birds
-    N_prey = 200
-    N_pred = 20
+    N_prey = 100
+    N_pred = 10
 
     # Number of states
     n = 3
@@ -319,7 +319,6 @@ if __name__ == "__main__":
     coords_pred = al*npr.rand(N_pred, 2)
     angles_pred = 2*np.pi*npr.rand(N_pred, 1)
     state_pred = np.hstack([coords_pred, angles_pred])
-
 
     # Colormap
     cmap_big_prey = cm.get_cmap('Blues', 512)
@@ -356,3 +355,4 @@ if __name__ == "__main__":
 
     # Animate simulation
     aniobj = ani.FuncAnimation(fig, update, interval=1, blit=True)
+    plt.show()

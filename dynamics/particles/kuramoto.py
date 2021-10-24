@@ -13,7 +13,7 @@ import matplotlib.animation as ani
 ###################
 npr.seed(1)  # Random seed for repeatability
 n = 40  # Number of oscillators
-w = 1+npr.rand(n)  # Intrinsic angular velocities
+w = 1.0 + npr.rand(n)  # Intrinsic angular velocities
 dt = 0.01  # Sampling time
 
 
@@ -74,7 +74,7 @@ gamma = np.pi / 2
 kappa_min = abs(max(w)-min(w)) / (Emin * np.sin(gamma))
 
 # Weighted adjacency matrix (couplings "kappa" included as weights)
-kappa = 1 * kappa_min
+kappa = 1.0 * kappa_min
 A = kappa * A
 
 
@@ -98,9 +98,9 @@ theta = np.copy(theta0)
 
 # Display radii
 r_mid = 1
-r_lwr = 0.9 * r_mid
-r_upr = 1.1 * r_mid
-r = np.linspace(r_lwr * r_mid, r_upr * r_mid, n)
+r_lwr = 0.8 * r_mid
+r_upr = 1.2 * r_mid
+r = np.linspace(r_lwr+0.05, r_upr-0.05, n)
 
 
 def display_x(theta):
@@ -113,7 +113,7 @@ def initial_plot(theta):
     # Draw particles/nodes
     dispx = display_x(theta)
     scat_size = 50
-    scat = ax.scatter(dispx[:, 0], dispx[:, 1], s=scat_size)
+    scat = ax.scatter(dispx[:, 0], dispx[:, 1], s=scat_size, alpha=0.5, edgecolor='none')
 
     # Draw orbit curves
     ax.add_artist(plt.Circle((0, 0), r_mid, facecolor=[0, 0, 0, 0], edgecolor=[0, 0, 0, 0.8], lw=2))
