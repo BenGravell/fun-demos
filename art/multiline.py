@@ -14,6 +14,7 @@ from sig import ema, smooth, StateSpaceFilter
 
 from time import sleep
 
+
 # Initialize plot
 app = QtGui.QApplication([])
 pg.setConfigOptions(antialias=True)

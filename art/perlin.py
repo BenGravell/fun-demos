@@ -72,9 +72,9 @@ def fractal(n=256, num_layers=8, p0=1.0, p=2.0, r=0.5, noise_fun=None, seed=0):
 
 
 if __name__ == "__main__":
-    z = fractal()
+    # z = fractal()
     # z = fractal(1024, num_layers=16)
-    # z = fractal(n=128, num_layers=5, p=1.5, r=0.8)
+    z = fractal(n=128, num_layers=5, p=1.5, r=0.8)
 
     cmap = 'inferno'
     plt.imshow(z, cmap=cmap)

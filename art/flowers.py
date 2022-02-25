@@ -79,10 +79,11 @@ for cmap_str in cmap_strs:
 
         # Match endpoints while preserving mean
         for i in range(m):
-            mean = np.mean(r[i])
-            shift = -np.linspace(r[i, 0], r[i, -1], n)
-            r[i] = r[i] + shift
-            r[i] = r[i] - np.mean(r[i]) + mean
+            original_mean = np.mean(r[i])
+            ramp = -np.linspace(r[i, 0], r[i, -1], n)
+            r[i] += ramp
+            new_mean = np.mean(r[i])
+            r[i] += original_mean - new_mean
 
         # Shift & scale to fit in [tmin, tmax] (normalization)
         tmin, tmax = 0, (j+1)/num_petals
