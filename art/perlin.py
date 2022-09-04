@@ -33,7 +33,7 @@ def perlin(x, y, n=256, seed=0):
 
 
 def lerp(a, b, x):
-    "linear interpolation"
+    """linear interpolation"""
     return a + x * (b - a)
 
 
@@ -49,7 +49,7 @@ def fade(t):
 
 
 def gradient(h, x, y):
-    "grad converts h to the right gradient vector and return the dot product with (x,y)"
+    """grad converts h to the right gradient vector and return the dot product with (x,y)"""
     vectors = np.array([[0, 1], [0, -1], [1, 0], [-1, 0]])
     g = vectors[h % 4]
     return g[:, :, 0] * x + g[:, :, 1] * y

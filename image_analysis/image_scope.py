@@ -39,8 +39,8 @@ for ax1, ax2, image_name in zip(axs1, axs2, image_names):
     ax1.axis('off')
     ax1.set_title(image_name)
 
-    ax2.scatter(angle, radius, c=rgb_colors, s=4, alpha=1.0, edgecolors='none')
-    ax2.grid(False)
+    ax2.scatter(angle, radius, c=rgb_colors, s=4, edgecolors='none')
+    ax2.grid(True)
     ax2.axes.yaxis.set_visible(False)
 
 fig.tight_layout()
