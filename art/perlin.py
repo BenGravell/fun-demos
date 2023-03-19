@@ -21,11 +21,18 @@ def perlin(x, y, n=256, seed=0):
     # fade factors
     u = fade(xf)
     v = fade(yf)
+    def clip_idx(idx):
+        idx_clipped = np.clip(idx, 0, n)
+        return idx_clipped
     # noise components
-    n00 = gradient(p[p[xi] + yi], xf, yf)
-    n01 = gradient(p[p[xi] + yi + 1], xf, yf - 1)
-    n11 = gradient(p[p[xi + 1] + yi + 1], xf - 1, yf - 1)
-    n10 = gradient(p[p[xi + 1] + yi], xf - 1, yf)
+    idx00 = p[p[xi] + yi]
+    idx01 = p[p[xi] + yi + 1]
+    idx11 = p[p[xi + 1] + yi + 1]
+    idx10 = p[p[xi + 1] + yi]
+    n00 = gradient(idx00, xf, yf)
+    n01 = gradient(idx01, xf, yf - 1)
+    n11 = gradient(idx11, xf - 1, yf - 1)
+    n10 = gradient(idx10, xf - 1, yf)
     # combine noises
     x1 = lerp(n00, n10, u)
     x2 = lerp(n01, n11, u)
@@ -49,15 +56,13 @@ def fade(t):
 
 
 def gradient(h, x, y):
-    """grad converts h to the right gradient vector and return the dot product with (x,y)"""
+    """gradient converts h to the right gradient vector and return the dot product with (x,y)"""
     vectors = np.array([[0, 1], [0, -1], [1, 0], [-1, 0]])
     g = vectors[h % 4]
     return g[:, :, 0] * x + g[:, :, 1] * y
 
 
-def fractal(n=256, num_layers=8, p0=1.0, p=2.0, r=0.5, noise_fun=None, seed=0):
-    if noise_fun is None:
-        noise_fun = perlin
+def fractal(n=256, num_layers=8, p0=1.0, p=2.0, r=0.5, seed=0):
     out = np.zeros([n, n])
     for i in range(num_layers):
         linmax = p**i
@@ -65,7 +70,7 @@ def fractal(n=256, num_layers=8, p0=1.0, p=2.0, r=0.5, noise_fun=None, seed=0):
             continue
         lin = np.linspace(0, p0*p**i, n)
         x, y = np.meshgrid(lin, lin)
-        z = noise_fun(x, y, n=2*n, seed=seed+i)
+        z = perlin(x, y, n=2*n, seed=seed+i)
         mag = r**i
         out += mag*z
     return out
