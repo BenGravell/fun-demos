@@ -1,1 +1,3 @@
-Lorenz attractor simulation
+# lorenz
+
+Lorenz attractor simulation and visualization.

@@ -1,5 +1,5 @@
-"""
-Random kitchen sinks with random Fourier features
+"""Random kitchen sinks with random Fourier features.
+
 See https://people.eecs.berkeley.edu/~brecht/kitchensinks.html
 See http://www.argmin.net/2017/12/05/kitchen-sinks/
 """

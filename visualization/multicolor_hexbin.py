@@ -44,7 +44,6 @@ for mean, cov, ns in zip(means, covs, nss):
 samples = np.vstack(samples_list)
 
 C = np.hstack([np.ones(nss[0]), -np.ones(nss[1])])
-# C = None
 
 xmin = np.min(samples[:, 0])
 xmax = np.max(samples[:, 0])
@@ -57,8 +56,8 @@ cmap = 'RdBu'
 plt.close('all')
 fig, ax = plt.subplots(figsize=(6, 6))
 fig.subplots_adjust(hspace=0.5, left=0.07, right=0.93)
-norm = SymLogNorm(linthresh=10)
-hb = ax.hexbin(samples[:, 0], samples[:, 1], C=C, reduce_C_function=np.sum, norm=norm, vmin=-1000, vmax=1000, gridsize=50, cmap=cmap)
+norm = SymLogNorm(linthresh=10, vmin=-1000, vmax=1000)
+hb = ax.hexbin(samples[:, 0], samples[:, 1], C=C, reduce_C_function=np.sum, norm=norm, gridsize=50, cmap=cmap)
 ax.axis([xmin, xmax, ymin, ymax])
 ax.set_title("Hexagon binning")
 cb = fig.colorbar(hb, ax=ax)
