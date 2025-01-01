@@ -1,7 +1,8 @@
-import streamlit as st
-
 import numpy as np
 import matplotlib.pyplot as plt
+import streamlit as st
+
+st.set_page_config(layout="wide")
 
 
 def featurize(x, d):
@@ -45,7 +46,7 @@ def weight_plot(d, w, d_true, w_true):
 with st.sidebar:
     seed = st.slider("Seed", min_value=1, max_value=10, value=1, step=1)
     n = st.select_slider("Number of examples", [10, 30, 100, 300, 1000], value=10)
-    noise_std = st.select_slider("Noise Standard Deviation", np.logspace(-2, 0, 101), format_func=lambda x: x.round(3), value=0.1)
+    noise_std = st.select_slider("Noise Standard Deviation", np.logspace(-2, 0, 101), format_func=lambda x: f"{x:.3f}", value=0.1)
     d = st.slider("Model Polynomial Degree", min_value=1, max_value=20, value=8, step=1)
 
 
@@ -61,12 +62,15 @@ y_pred = predict(x, d, w)
 
 # Metrics
 rmse = np.sqrt(np.mean(np.square(y_pred - y_true)))
-st.metric("RMSE", rmse.round(3))
 
 # Plotting
-data_fig, data_ax = data_plot(x, y, y_true, y_pred)
-st.pyplot(data_fig)
+cols = st.columns(2)
+with cols[0]:
+    st.header(f"RMSE = {rmse:.3f}")
+    data_fig, data_ax = data_plot(x, y, y_true, y_pred)
+    st.pyplot(data_fig)
 
-st.header("Model Weights")
-weight_fig, weight_ax = weight_plot(d, w, d_true, w_true)
-st.pyplot(weight_fig)
+with cols[1]:
+    st.header("Model Weights")
+    weight_fig, weight_ax = weight_plot(d, w, d_true, w_true)
+    st.pyplot(weight_fig)

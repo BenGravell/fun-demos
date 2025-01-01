@@ -50,3 +50,4 @@ def visualize_net(net, ns=40):
 
 
 visualize_net(net)
+plt.show()

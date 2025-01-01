@@ -1,3 +1,5 @@
+"""Create a plot of the Mandelbrot set."""
+
 import numpy as np
 import matplotlib.pyplot as plt
 

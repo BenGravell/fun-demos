@@ -109,3 +109,4 @@ if __name__ == "__main__":
     my_filter = StateSpaceFilter(a1=0.99, a2=0.01, n=2)
     y = np.array([my_filter.step(u[t]) for t in range(T)])
     plt.plot(y)
+    plt.show()

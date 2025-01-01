@@ -1,14 +1,16 @@
 import os
+from pathlib import Path
+
 import numpy as np
 import matplotlib.pyplot as plt
 from matplotlib.colors import rgb_to_hsv, hsv_to_rgb
 from PIL import Image
 
+IMAGE_DIR_PATH = Path(__file__).parent / "images_tiny"
+
+
 # Define the image names and paths
 image_names = ['mona_lisa', 'starry_night', 'scream', 'persistence_of_memory']
-size = '_tiny'
-extension = '.jpg'
-folder = 'images_tiny'
 num_images = len(image_names)
 
 # Create figure and axes
@@ -24,8 +26,8 @@ for i in range(num_images):
 
 # Open images and analyze
 for ax1, ax2, image_name in zip(axs1, axs2, image_names):
-    filename = os.path.join(folder, image_name+size+extension)
-    sn = Image.open(filename)
+    file_path = IMAGE_DIR_PATH / f"{image_name}.jpg"
+    sn = Image.open(file_path)
     base_colors = np.array(sn)
     raw_colors = base_colors.reshape(-1, 3)
     raw_colors = np.unique(raw_colors, axis=0)

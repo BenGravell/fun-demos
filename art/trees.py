@@ -66,8 +66,8 @@ def custom_colormap(cmap_str=None):
         greens = terrain_r(np.linspace(0.55, 0.70, 64))
         cmap = ListedColormap(np.vstack([browns, greens]))
     elif cmap_str == 'natural_real':
-        brown = proplot.Colormap('Brown3_r', left=0.0, right=0.6)
-        green = proplot.Colormap('Green3', left=0.2, right=0.7)
+        brown = proplot.Colormap('Browns3_r', left=0.0, right=0.6)
+        green = proplot.Colormap('Greens3', left=0.2, right=0.7)
         cmap = proplot.Colormap(brown, green, ratios=(10, 8))
     else:
         raise ValueError("Invalid custom colormap string '%s'" % cmap_str)
@@ -287,3 +287,4 @@ if __name__ == "__main__":
     ax.axis('off')
     ax.autoscale()
     fig.tight_layout()
+    plt.show()

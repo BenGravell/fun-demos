@@ -70,3 +70,4 @@ def update(t):
 
 
 aniobj = ani.FuncAnimation(fig, update, interval=1, blit=True)
+plt.show()

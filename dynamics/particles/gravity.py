@@ -70,9 +70,6 @@ def sie2(x, v, acc):
     return xnew, vnew
 
 
-# def verlet(x, v, acc):
-
-
 def rk4(x, v, acc):
     rkc, kc = np.array([1, 2, 2, 1])[:, None, None] / 6, [1 / 2, 1 / 2, 1]
     dim = [5, 4]
